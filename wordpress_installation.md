@@ -65,36 +65,11 @@ mariaDBを起動する
 	> GRANT ALL PRIVILEGES ON `wordpress-db`.* TO "user"@"localhost";
 	> FLUSH PRIVILEGES;  
 	> exit
-	※wordpress-dbにデータベース名、userに任意のユーザ名、userpassにユーザ名の任意のパスワードを設定する
 
-## 02. Apacheインストール
-	$ sudo yum -y install httpd 
-
-	$ sudo systemctl start httpd 
-	$ sudo systemctl enable httpd 
-	$ sudo systemctl status httpd
-
-(表示例)
-> ● httpd.service - The Apache HTTP Server                                                              
->    Loaded: loaded (/usr/lib/systemd/system/httpd.service; disabled; vendor preset: disabled)           
->    Active: active (running) since Sun 2019-12-01 14:08:04 UTC; 9s ago                                  
->      Docs: man:httpd.service(8)                                                                        
->  Main PID: 4005 (httpd)                                                                                
->    Status: "Total requests: 0; Idle/Busy workers 100/0;Requests/sec: 0; Bytes served/sec:   0 B/sec"   
->    CGroup: /system.slice/httpd.service                                                                 
->            tq4005 /usr/sbin/httpd -DFOREGROUND                                                         
->            tq4006 /usr/sbin/httpd -DFOREGROUND                                                         
->            tq4007 /usr/sbin/httpd -DFOREGROUND                                                         
->            tq4008 /usr/sbin/httpd -DFOREGROUND                                                         
->            tq4009 /usr/sbin/httpd -DFOREGROUND                                                         
->            mq4010 /usr/sbin/httpd -DFOREGROUND                                                         
->                                                                                                        
-> Dec 01 14:08:04 ip-172-31-94-88.ec2.internal systemd[1]: Starting The Apache HTTP Server...            
-> Dec 01 14:08:04 ip-172-31-94-88.ec2.internal systemd[1]: Started The Apache HTTP Server.               
+※wordpress-dbにデータベース名、userに任意のユーザ名、userpassにユーザ名の任意のパスワードを設定する
 
 
-
-## 03. wordpressのインストール  
+## 02. wordpressのインストール  
 wordpressの公式サイトからファイルをダウンロードする  
 
 	$ wget https://wordpress.org/latest.tar.gz  
@@ -216,3 +191,39 @@ wordpress配下にあるすべてのファイルをhtmlディレクトリへコ�
 > -rw-r--r--  1 ec2-user ec2-user  4764 Dec  1 14:05 wp-trackback.php                                    
 > -rw-r--r--  1 ec2-user ec2-user  3150 Dec  1 14:05 xmlrpc.php                                          
 
+## 03. Apacheインストール
+	$ sudo yum -y install httpd 
+	$ httpd -version
+※インストールされていることを確認
+
+	$ vi /etc/httpd/conf/httpd.conf
+
+(表示例)
+
+> 中略...  
+> DocumentRoot "/var/www/html"  
+> ...
+
+※DocumentRootのパスがwordpressのパスと同じであることを確認
+
+	$ sudo systemctl start httpd 
+	$ sudo systemctl enable httpd 
+	$ sudo systemctl status httpd
+
+(表示例)
+> ● httpd.service - The Apache HTTP Server                                                              
+>    Loaded: loaded (/usr/lib/systemd/system/httpd.service; disabled; vendor preset: disabled)           
+>    Active: active (running) since Sun 2019-12-01 14:08:04 UTC; 9s ago                                  
+>      Docs: man:httpd.service(8)                                                                        
+>  Main PID: 4005 (httpd)                                                                                
+>    Status: "Total requests: 0; Idle/Busy workers 100/0;Requests/sec: 0; Bytes served/sec:   0 B/sec"   
+>    CGroup: /system.slice/httpd.service                                                                 
+>            tq4005 /usr/sbin/httpd -DFOREGROUND                                                         
+>            tq4006 /usr/sbin/httpd -DFOREGROUND                                                         
+>            tq4007 /usr/sbin/httpd -DFOREGROUND                                                         
+>            tq4008 /usr/sbin/httpd -DFOREGROUND                                                         
+>            tq4009 /usr/sbin/httpd -DFOREGROUND                                                         
+>            mq4010 /usr/sbin/httpd -DFOREGROUND                                                         
+>                                                                                                        
+> Dec 01 14:08:04 ip-172-31-94-88.ec2.internal systemd[1]: Starting The Apache HTTP Server...            
+> Dec 01 14:08:04 ip-172-31-94-88.ec2.internal systemd[1]: Started The Apache HTTP Server.               
