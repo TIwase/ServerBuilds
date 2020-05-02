@@ -207,11 +207,12 @@ viエディタを開き、インサートモードで下記を追加する
 http://<IPアドレス先>/phpinfo.phpあるいはhttp://<パブリックDNS名>/phpinfo.phpでアクセスしてphpのテストページが表示されることを確認する
 
 ## 04. wordpressのインストール  
-wordpressの公式サイトからファイルをダウンロードする  
+ 
+ディレクトリの移動
 
 	$ cd /var/www/html
 
-※ディレクトリが存在しなければmkdirでhtmlフォルダを作成
+wordpressの公式サイトからファイルをダウンロードする 
 
 	英語ver.
 	$ wget https://wordpress.org/latest.tar.gz  
@@ -232,10 +233,6 @@ wordpressの公式サイトからファイルをダウンロードする
 >                                                                                                        
 > 2019-12-01 13:45:20 (30.8 MB/s) - ‘latest.tar.gz’ saved [12372564/12372564]                          
 
-	$ ls -l                                                                        
-	
-(表示例)
-> latest.tar.gz  wordpress                                                                               
 
 wp-config-sample.phpファイルがあることを確認
 
@@ -296,7 +293,7 @@ configファイルを複製し、wordpressのユーザ名とパスワードを�
 ※database_name_hereにMySQLデータベース名、username_hereにMySQLユーザ名、password_hereにMySQLパスワードを記述する
 
 
-wordpress配下にあるすべてのファイルをhtmlディレクトリへ移動
+wordpress配下にあるすべてのファイルをhtmlディレクトリへ移動し、権限を変更
 
 	$ sudo mv wordpress/* /var/www/html/
 	$ sudo chown -R apache:apache /var/www/html/; ls -l
