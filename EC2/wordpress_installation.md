@@ -1,4 +1,16 @@
-# AWS(Amazon Linux 2) + wordpressのインストール
+#### 2020/05/03 追記
+
+
+# EC2(Amazon Linux 2) + wordpressのインストール
+
+構築した環境 (2020/05/03現在):
+
+|名前|version|
+|----|----|
+|wordpress|5.4.1
+|Apache|2.4|
+|php|7.4|
+|mariaDB|10.3.20|
 
 ※AWS Consoleの設定等は割愛
 
@@ -234,7 +246,7 @@ wordpressの公式サイトからファイルをダウンロードする
 > 2019-12-01 13:45:20 (30.8 MB/s) - ‘latest.tar.gz’ saved [12372564/12372564]                          
 
 
-wp-config-sample.phpファイルがあることを確認
+
 
 	$ ls -l wordpress/  
 
@@ -259,6 +271,8 @@ wp-config-sample.phpファイルがあることを確認
 > -rw-r--r--  1 ec2-user ec2-user 31112 Sep  3 00:41 wp-signup.php                                       
 > -rw-r--r--  1 ec2-user ec2-user  4764 Nov 30  2017 wp-trackback.php                                    
 > -rw-r--r--  1 ec2-user ec2-user  3150 Jul  1 08:01 xmlrpc.php                                          
+
+wp-config-sample.phpファイルがあることを確認
 
 configファイルを複製し、wordpressのユーザ名とパスワードを設定する
 
@@ -296,6 +310,7 @@ configファイルを複製し、wordpressのユーザ名とパスワードを�
 wordpress配下にあるすべてのファイルをhtmlディレクトリへ移動し、権限を変更
 
 	$ sudo mv wordpress/* /var/www/html/
+	$ sudo rm -r wordpress
 	$ sudo chown -R apache:apache /var/www/html/; ls -l
 
 (表示例)                                                                                             
