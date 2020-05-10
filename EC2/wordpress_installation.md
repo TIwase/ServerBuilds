@@ -10,7 +10,7 @@
 |wordpress|5.4.1
 |Apache|2.4|
 |php|7.4|
-|mariaDB|10.3.20|
+|mariaDB|5.5.64|
 
 ※AWS Consoleの設定等は割愛
 
