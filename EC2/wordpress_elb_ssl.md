@@ -137,6 +137,21 @@ Route53で取得した独自ドメイン(サブドメイン含む)を追加し�
 	/** Sets up WordPress vars and included files. */
 	require_once ABSPATH . 'wp-settings.php';
 
+
+リダイレクト設定を変更する。
+
+	$ sudo chown -R apache:apache /var/www/html/.htaccess
+	$ sudo vi /var/www/html/.htaccess
+
+下記を追加する。
+	
+	<IfModule mod_rewrite.c>  
+	RewriteEngine On  
+	RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]  
+	RewriteCond %{REQUEST_URI} !^/health.html  
+	RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]  
+	</IfModule>
+
 Apacheを再起動する
 
 	$ sudo systemctl restart httpd
