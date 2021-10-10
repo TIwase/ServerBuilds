@@ -1,6 +1,7 @@
 作成日:2021/07/09
 # Amazon Linux 2にredmine(bitnami)をインストール
 
+EC2, lightsailどちらも対応
 
 |名前|version|
 |----|----|
