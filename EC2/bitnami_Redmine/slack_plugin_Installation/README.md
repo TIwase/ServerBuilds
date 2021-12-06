@@ -1,4 +1,4 @@
-作成日:2021/07/09
+作成日:2021/09/18
 # Amazon Linux 2にインストールしたbitnami Redmineのslackプラグイン導入
 
 
